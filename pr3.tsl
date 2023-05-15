@@ -1,0 +1,28 @@
+//problem3
+
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+//Matrix<Int>[][] tile1 = [[0,0,0],[0,0,0],[0,1,1]];
+
+Matrix<Int>[][] base = [[]];
+Matrix<Int>[][] ans = [[]];
+Matrix<Int>[][] top = [[]];
+Matrix<Int>[][] down = [[]];
+Matrix<Int>[][] base = [[]];
+Matrix<Int>[][] row = [[]];
+
+Int sizeX;
+Int sizeY;
+
+sizeX = tile1.size;
+sizeY = tile1.get(0).size;
+
+top = concatMatrix(concatMatrix(tile1, tile1.flipY), generateMatrix(sizeX, sizeY, 0));
+down = concatMatrix(concatMatrix(generateMatrix(sizeX, sizeY, 0), tile1.flipX), (tile1.flipY).flipX);
+base = concatMatrix1(top, down);
+
+row = concatMatrix(base, base.flipY).repeatMatrix(10);
+
+ans = row.repeatMatrix1(30);
+
+writeFile(ans);
+

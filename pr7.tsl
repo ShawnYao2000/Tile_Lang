@@ -1,0 +1,45 @@
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+
+Matrix<Int>[][] tileQ = [[]];
+Matrix<Int>[][] topL = [[]];
+Matrix<Int>[][] topR = [[]];
+Matrix<Int>[][] bottomL = [[]];
+Matrix<Int>[][] bottomR = [[]];
+Matrix<Int>[][] workTile = [[]];
+Matrix<Int>[][] ans = [[]];
+Int N = tile1.size;
+
+Int i = 100;
+Int work;
+
+for(i>=2){
+
+    
+
+    if(i == 100){
+        tileQ = tile1.scaleMatrix(i);
+    }
+    else{
+
+        work = 100 - i;
+
+        topL = generateMatrix(work*N, work*N, 0);
+        topR = generateMatrix(work*N, i*N, 0);
+        bottomL = generateMatrix(i*N, work*N, 0);
+        bottomR = tile1.scaleMatrix(i);
+
+        workTile = concatMatrix1(concatMatrix(topL, topR), concatMatrix(bottomL, bottomR));
+
+
+        //tileQ = workTile;
+        tileQ = tileQ.xor(workTile);
+    };
+
+    //writeFile(workTile);
+
+    i = i - 2;
+};
+
+ans = concatMatrix1( concatMatrix(tileQ, tileQ.flipY), concatMatrix(tileQ.flipX, (tileQ.flipX).flipY ) );
+
+writeFile(ans);

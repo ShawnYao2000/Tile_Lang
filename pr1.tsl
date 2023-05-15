@@ -1,0 +1,27 @@
+//problem1
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+Matrix<Int>[][] tile2 = readFile("tile2.tl");
+
+//Matrix<Int>[][] tile1 = [[1]];
+//Matrix<Int>[][] tile2 = [[0]];
+
+Matrix<Int>[][] ans = [[]];
+Matrix<Int>[][] row = [[]];
+Int N = tile1.size;
+
+Int i = 0;
+for(i<64){
+    if(i % 2 == 0){
+        row = concatMatrix(tile1, tile2);
+        row = row.repeatMatrix(32);
+    }
+    else{
+        row = concatMatrix(tile2, tile1);
+        row = row.repeatMatrix(32);
+    };
+    ans =  concatMatrix1(ans, row);
+    //ans.add(row);
+    i = i + 1;
+};
+
+writeFile(ans);

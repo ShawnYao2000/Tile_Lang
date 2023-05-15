@@ -1,0 +1,25 @@
+//problem5
+
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+
+//Matrix<Int>[][] tile1 = [[1,1,0,0,0,0,0,0,1,1],[1,1,0,0,0,0,0,0,1,1],[0,0,1,1,0,0,1,1,1,1],[0,0,1,1,0,0,1,1,1,1],[0,0,0,0,1,1,0,0,1,1],[0,0,0,0,1,1,0,0,1,1],[0,0,1,1,0,0,1,1,1,1],[0,0,1,1,0,0,1,1,1,1],[1,1,1,1,1,1,1,1,1,1],[1,1,1,1,1,1,1,1,1,1]];
+
+Matrix<Int>[][] subTile1;
+Matrix<Int>[][] subTile2; 
+Matrix<Int>[][] subTile3; 
+Matrix<Int>[][] ans;
+Matrix<Int>[][] top; 
+Matrix<Int>[][] middle; 
+Matrix<Int>[][] bottom; 
+
+subTile1 = tile1.subArray(0,0,6);
+subTile2 = tile1.subArray(2,2,6);
+subTile3 = tile1.subArray(4,4,6);
+
+top = concatMatrix(concatMatrix(subTile1,subTile1), subTile1);
+middle = concatMatrix(concatMatrix(subTile2,subTile2), subTile2);
+bottom = concatMatrix(concatMatrix(subTile3,subTile3), subTile3);
+
+ans = concatMatrix1(concatMatrix1(top, middle), bottom);
+
+writeFile(ans);

@@ -1,0 +1,173 @@
+
+//problem6
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+Matrix<Int>[][] tile2 = readFile("tile2.tl");
+Matrix<Int>[][] tile3 = readFile("tile3.tl");
+
+Matrix<Int>[][] top = [[]];
+Matrix<Int>[][] mid = [[]];
+Matrix<Int>[][] bottom = [[]];
+Matrix<Int>[][] ans = [[]];
+Matrix<Int>[][] row = [[]];
+Int N = tile1.size;
+Matrix<Int>[][] blank = generateMatrix(N, N, 0);
+
+Int i = 0;
+Int j = 0;
+Int k = 0;
+
+
+// line 1
+top = concatMatrix(blank, blank);
+i=3;
+for(i<=60){
+    if(i == 3){
+        row = tile1;
+    }
+    else{
+        if(i%3+1 == 1){
+            row = concatMatrix(row, tile1);
+        };
+        if(i%3+1 == 2){
+            row = concatMatrix(row, tile2);
+        };
+        if(i%3+1 == 3){
+            row = concatMatrix(row, tile3);
+        };
+        
+    };
+    i = i + 1;
+};
+top = concatMatrix(top, row);
+
+
+//line 2
+row = blank;
+i=2;
+for(i<=60){
+    if(i%3 == 1){
+        row = concatMatrix(row, tile1);
+    };
+    if(i%3 == 2){
+        row = concatMatrix(row, tile2);
+    };
+    if(i%3 == 0){
+        row = concatMatrix(row, tile3);
+    };
+    i = i + 1;
+};
+top = concatMatrix1(top, row);
+
+//line 3-58
+i=3;
+for(i<=58){
+    j = (3 - (i%3))%3;
+    k = 1;
+    row = [[]];
+
+    for(k<=60){
+        if(j == 1){
+            if(k == 1){
+                row = tile1;
+            }
+            else{
+                row = concatMatrix(row, tile1);
+
+            };
+        };
+        if(j == 2){
+            if(k == 1){
+                row = tile2;
+            }
+            else{
+                row = concatMatrix(row, tile2);
+            };
+        };
+        if(j == 0){
+            if(k == 1){
+                row = tile3;
+            }
+            else{
+                row = concatMatrix(row, tile3);
+            };
+        };
+        k = k + 1;
+        j = (j+1) % 3;
+        
+    };
+    mid = concatMatrix1(mid, row);
+    i = i + 1;
+};
+
+//line 59
+i = 1;
+row = [[]];
+for(i<=59){
+    if(i%3 == 1){
+        if(i == 1){
+            row = tile1;
+        }
+        else{
+            row = concatMatrix(row, tile1);
+        };
+        
+    };
+    if(i%3 == 2){
+        if(i == 1){
+            row = tile2;
+        }
+        else{
+            row = concatMatrix(row, tile2);
+        };
+    };
+    if(i%3 == 0){
+        if(i == 1){
+            row = tile3;
+        }
+        else{
+            row = concatMatrix(row, tile3);
+        };
+    };
+    i = i + 1;
+};
+row = concatMatrix(row, blank);
+bottom = concatMatrix1(bottom, row);
+
+//line 60
+i = 1;
+row = [[]];
+for(i<=58){
+    if(i%3 == 1){
+        if(i == 1){
+            row = tile3;
+        }
+        else{
+            row = concatMatrix(row, tile3);
+        };
+    };
+    if(i%3 == 2){
+        if(i == 1){
+            row = tile1;
+        }
+        else{
+            row = concatMatrix(row, tile1);
+        };
+    };
+    if(i%3 == 0){
+        if(i == 1){
+            row = tile2;
+        }
+        else{
+            row = concatMatrix(row, tile2);
+        };
+    };
+    i = i + 1;
+};
+row = concatMatrix(row, concatMatrix(blank, blank));
+bottom = concatMatrix1(bottom, row);
+
+ans = concatMatrix1(concatMatrix1(top, mid), bottom);
+
+
+
+writeFile(ans);

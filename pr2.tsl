@@ -1,0 +1,21 @@
+//problem2
+
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+
+//Matrix<Int>[][] tile1 = [[0,0,0,1],[0,0,1,1],[0,1,1,1],[1,1,1,1]];
+
+Matrix<Int>[][] base;
+Matrix<Int>[][] ans;
+Matrix<Int>[][] top;
+Matrix<Int>[][] middle;
+
+base = concatMatrix1(concatMatrix(tile1, tile1.rotate(90)), concatMatrix(tile1.rotate(270), tile1.rotate(180)));
+
+top = base.repeatMatrix(5);
+
+middle = concatMatrix(concatMatrix(base.repeatMatrix1(3), base.scaleMatrix(3)),  base.repeatMatrix1(3));
+
+ans = concatMatrix1(concatMatrix1(top, middle), top);
+
+writeFile(ans);
+

@@ -1,0 +1,177 @@
+Matrix<Int>[][] tile1 = readFile("tile1.tl");
+Matrix<Int>[][] tile2 = readFile("tile2.tl");
+Int N = tile1.size;
+
+Matrix<Int>[][] tile1D = tile1.flipX;
+Matrix<Int>[][] tile2D = tile2.flipX;
+Matrix<Int>[][] tile2double = tile2.scaleMatrix(2);
+Matrix<Int>[][] UL = tile2double.subArray(0, 0, N);
+Matrix<Int>[][] UR = tile2double.subArray(0, N, N);
+Matrix<Int>[][] DL = tile2double.subArray(N, 0, N);
+Matrix<Int>[][] DR = tile2double.subArray(N, N, N);
+
+Matrix<Int>[][] ULD = UL.flipX;
+Matrix<Int>[][] URD = UR.flipX;
+Matrix<Int>[][] DLD = DL.flipX;
+Matrix<Int>[][] DRD = DR.flipX;
+
+
+// 1 for tile1, 2 for tile2, 3 for tile1.flipX, 4 for tile2.flipX, 5 for tile2.scaleMatrix(2) UL, 6 for UR, 7 for DL, 8 for DR
+// 9 for DLD, 10 for DRD, 11 for ULD, 12 for URD
+
+Matrix<Int>[][] A = [[]];
+Matrix<Int>[][] B = [[]];
+Matrix<Int>[][] C = [[]];
+Matrix<Int>[][] D = [[]];
+Matrix<Int>[][] E = [[]];
+Matrix<Int>[][] F = [[]];
+Matrix<Int>[][] work = [[]];
+Matrix<Int>[][] ans = [[]];
+Matrix<Int>[][] row = [[]];
+Int i = 0;
+Int j;
+Int x;
+
+
+
+A = [[3,3,4],[3,5,6],[2,7,8],[4,9,10],[1,11,12]];
+B = [[9,10,9,10,4,4,9,10,9,10],[11,12,11,12,1,1,11,12,11,12],[4,9,10,1,1,1,1,9,10,4],[1,11,12,5,6,5,6,11,12,1],[1,1,2,7,8,7,8,2,1,1]];
+C = [[4,3,3],[5,6,3],[7,8,2],[9,10,4],[11,12,1]];
+C = concatMatrix(C, A);
+D = B;
+E = C;
+F = [[9,10,9,10,4],[11,12,11,12,1],[4,9,10,1,1],[1,11,12,5,6],[1,1,2,7,8]];
+
+work = A;
+work = concatMatrix(work, B);
+work = concatMatrix(work, C);
+work = concatMatrix(work, D);
+work = concatMatrix(work, E);
+work = concatMatrix(work, F);
+
+
+for(i<work.size){
+    j = 0;
+    for(j<work.get(0).size){
+
+        x = work.get(i).get(j);
+
+        if(x==1){
+            if(j==0){
+                row = tile1;
+            }
+            else{
+                
+                row = concatMatrix(row, tile1);
+            };
+        };
+        if(x==2){
+            if(j==0){
+                row = tile2;
+            }
+            else{
+                
+                row = concatMatrix(row, tile2);
+            };
+        };
+        if(x==3){
+            if(j==0){
+                row = tile1D;
+            }
+            else{
+                
+                row = concatMatrix(row, tile1D);
+            };
+        };
+        if(x==4){
+            if(j==0){
+                row = tile2D;
+            }
+            else{
+                row = concatMatrix(row, tile2D);
+            };
+        };
+        if(x==5){
+            if(j==0){
+                row = UL;
+            }
+            else{
+                row = concatMatrix(row, UL);
+            };
+        };
+        if(x==6){
+            if(j==0){
+                row = UR;
+            }
+            else{
+                row = concatMatrix(row, UR);
+            };
+        };
+        if(x==7){
+            if(j==0){
+                row = DL;
+            }
+            else{
+                row = concatMatrix(row, DL);
+            };
+        };
+        if(x==8){
+            if(j==0){
+                row = DR;
+            }
+            else{
+                row = concatMatrix(row, DR);
+            };
+        };
+
+        if(x==9){
+            if(j==0){
+                row = DLD;
+            }
+            else{
+                row = concatMatrix(row, DLD);
+            };
+        };
+        if(x==10){
+            if(j==0){
+                row = DRD;
+            }
+            else{
+                row = concatMatrix(row, DRD);
+            };
+        };
+        if(x==11){
+            if(j==0){
+                row = ULD;
+            }
+            else{
+                row = concatMatrix(row, ULD);
+            };
+        };
+        if(x==12){
+            if(j==0){
+                row = URD;
+            }
+            else{
+                row = concatMatrix(row, URD);
+            };
+        };
+
+        j = j + 1;
+    };
+
+    if(i == 0){
+        ans = row;
+    }
+    else{
+        ans = concatMatrix1(ans, row);
+    };
+
+
+    i = i + 1;
+};
+
+ans = concatMatrix1(ans, ans.flipX);
+ans = ans.repeatMatrix1(4);
+
+writeFile(ans);
