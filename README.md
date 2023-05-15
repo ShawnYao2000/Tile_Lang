@@ -7,9 +7,8 @@ TileLang is a powerful language designed for manipulating tiles (matrices) using
 To use TileLang, follow the steps below:
 
 1. **Granting execute permission**: Since it is likely that you are downloading the file from GitHub, you may need to grant execute permission for the UNIX executable files by using the following commands:
-```shell
-chmod +x tv
-chmod +x Tsl
+`chmod +x tv`
+`chmod +x Tsl`
 
 2. **Run the TileLang program**: After successful compilation, you can run the TileLang program with your own code by executing the following command:
 `./Tsl <your_code.tsl>`
