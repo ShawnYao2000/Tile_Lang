@@ -16,7 +16,7 @@ To use TileLang, follow the steps below:
 `./Tsl <your_code.tsl>`
 Replace `<your_code.tsl>` with the name of your TileLang code file.
 
-4. **A tileviewer(tv) has been provided as a UNIX executable file, paste your generated matrix to a file in the same folder as tv and view your result using the following command:
+4. **GUI**: A tileviewer(tv) has been provided as a UNIX executable file, paste your generated matrix to a file in the same folder as tv and view your result using the following command:
 `./tv <your_result.tl>`
 
 ## Requirements
