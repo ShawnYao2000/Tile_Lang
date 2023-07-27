@@ -10,11 +10,13 @@ To use TileLang, follow the steps below:
 `chmod +x tv`
 `chmod +x Tsl`
 
-2. **Run the TileLang program**: After successful compilation, you can run the TileLang program with your own code by executing the following command:
+2. **Sample**: A Sample code will be given, and you will know about the basic logic and command of the language.
+
+3. **Run the TileLang program**: After successful compilation, you can run the TileLang program with your own code by executing the following command:
 `./Tsl <your_code.tsl>`
 Replace `<your_code.tsl>` with the name of your TileLang code file.
 
-3. **A tileviewer(tv) has been provided as a UNIX executable file, paste your generated matrix to a file in the same folder as tv and view your result using the following command:
+4. **A tileviewer(tv) has been provided as a UNIX executable file, paste your generated matrix to a file in the same folder as tv and view your result using the following command:
 `./tv <your_result.tl>`
 
 ## Requirements
